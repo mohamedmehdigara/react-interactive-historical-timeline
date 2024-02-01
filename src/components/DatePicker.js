@@ -11,11 +11,14 @@ const DatePickerWrapper = styled.div`
   padding: 20px;
   border: 1px solid #ddd;
   border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 `;
 
 const StyledDatePicker = styled(DatePicker)`
-  width: 200px;
+  width: 100%;
+  max-width: 300px;
   margin-bottom: 20px;
+  font-size: 16px;
 `;
 
 const DatePickerComponent = ({ onDateChange }) => {
@@ -28,12 +31,28 @@ const DatePickerComponent = ({ onDateChange }) => {
 
   return (
     <DatePickerWrapper>
+      <h2>Select a Date</h2>
       <StyledDatePicker
         selected={selectedDate}
         onChange={handleDateChange}
         dateFormat="MMMM d, yyyy"
-        placeholderText="Select a date"
+        placeholderText="Click to select a date"
+        showYearDropdown
+        yearDropdownItemNumber={15}
+        scrollableYearDropdown
+        popperPlacement="auto"
+        popperModifiers={{
+          offset: {
+            enabled: true,
+            offset: '-20px, 10px',
+          },
+        }}
       />
+      {selectedDate && (
+        <p>
+          You selected: {selectedDate.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+        </p>
+      )}
     </DatePickerWrapper>
   );
 };

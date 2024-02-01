@@ -24,7 +24,7 @@ const Pagination = ({ totalPages, currentPage, onPageChange }) => {
     for (let i = 1; i <= totalPages; i++) {
       pageNumbers.push(
         <PageButton key={i} active={i === currentPage} onClick={() => onPageChange(i)}>
-          {i}
+          i
         </PageButton>
       );
     }

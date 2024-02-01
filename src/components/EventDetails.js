@@ -27,6 +27,12 @@ const DetailsModal = styled.div`
     background-size: cover;
     background-position: center;
     border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .svg-image {
+    width: 100%;
+    height: 100%;
   }
 
   button {
@@ -45,19 +51,39 @@ const DetailsModal = styled.div`
   }
 `;
 
-const ImageContainer = styled.div`
-  background-image: url(${(props) => props.imageUrl});
-`;
-
-const EventDetails = ({ event, onClose, title, description, date }) => {
-  
+const EventDetails = ({ event, onClose }) => {
+  const { title, date, description, imageUrl, link } = event;
 
   return (
     <DetailsModal>
       {/* Display detailed information about the event */}
+      <div className="image-container">
+        {imageUrl ? (
+          <img className="svg-image" src={imageUrl} alt={`Event: ${title}`} />
+        ) : (
+          <svg
+            className="svg-image"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="#666"
+          >
+            <path d="M0 0h24v24H0V0z" fill="none" />
+            <circle cx="12" cy="12" r="8" fill="#ccc" />
+            <path d="M10 3h4v18h-4z" fill="#666" />
+          </svg>
+        )}
+      </div>
+
       <h2>Title: {title}</h2>
       <p>Date: {date}</p>
       <p>Description: {description}</p>
+
+      {link && (
+        <a href={link} target="_blank" rel="noopener noreferrer">
+          Learn more
+        </a>
+      )}
+
       <button onClick={onClose}>Close</button>
     </DetailsModal>
   );
