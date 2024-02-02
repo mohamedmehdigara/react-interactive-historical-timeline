@@ -16,6 +16,18 @@ const PageButton = styled.button`
   border: 1px solid #007bff;
   border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: ${(props) => (props.active ? '#0056b3' : '#eaeaea')};
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: #ccc;
+    color: #666;
+    border-color: #ccc;
+  }
 `;
 
 const Pagination = ({ totalPages, currentPage, onPageChange }) => {
@@ -24,7 +36,7 @@ const Pagination = ({ totalPages, currentPage, onPageChange }) => {
     for (let i = 1; i <= totalPages; i++) {
       pageNumbers.push(
         <PageButton key={i} active={i === currentPage} onClick={() => onPageChange(i)}>
-          i
+          {i}
         </PageButton>
       );
     }
@@ -33,13 +45,19 @@ const Pagination = ({ totalPages, currentPage, onPageChange }) => {
 
   return (
     <PaginationWrapper>
-      <PageButton disabled={currentPage === 1} onClick={() => onPageChange(currentPage - 1)}>
+      <PageButton
+        disabled={currentPage === 1}
+        onClick={() => onPageChange(currentPage - 1)}
+      >
         Previous
       </PageButton>
 
       {renderPageNumbers()}
 
-      <PageButton disabled={currentPage === totalPages} onClick={() => onPageChange(currentPage + 1)}>
+      <PageButton
+        disabled={currentPage === totalPages}
+        onClick={() => onPageChange(currentPage + 1)}
+      >
         Next
       </PageButton>
     </PaginationWrapper>
@@ -47,3 +65,4 @@ const Pagination = ({ totalPages, currentPage, onPageChange }) => {
 };
 
 export default Pagination;
+

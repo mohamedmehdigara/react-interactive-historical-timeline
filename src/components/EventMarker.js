@@ -16,6 +16,9 @@ const Marker = styled.div`
   p {
     margin: 0;
     font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 `;
 
@@ -23,8 +26,8 @@ const EventMarker = ({ date, title, onClick }) => {
   return (
     <Marker onClick={onClick}>
       {/* Display date and title */}
-      <p>date</p>
-      <p>title</p>
+      <p>{date}</p>
+      <p>{title}</p>
     </Marker>
   );
 };

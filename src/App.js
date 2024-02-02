@@ -4,7 +4,8 @@ import EventDetails from './components/EventDetails';
 import Timeline from './components/Timeline';
 import Filter from './components/Filter';
 import Search from './components/Search';
-import { DatePicker, Pagination } from 'ant-design-vue';
+import Pagination from './components/Pagination';
+import DatePicker from './components/DatePicker';
 
 function App() {
   return (

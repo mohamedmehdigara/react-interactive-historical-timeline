@@ -33,6 +33,7 @@ const DetailsModal = styled.div`
   .svg-image {
     width: 100%;
     height: 100%;
+    fill: #666; /* Set the SVG fill color */
   }
 
   button {
@@ -49,29 +50,30 @@ const DetailsModal = styled.div`
       background-color: #0056b3;
     }
   }
+
+  a {
+    text-decoration: none;
+    color: #007bff;
+    margin-top: 10px;
+    display: block;
+  }
 `;
 
-const EventDetails = ({ event, onClose }) => {
-  const { title, date, description, imageUrl, link } = event;
-
+const EventDetails = ({ onClose, title, date, description, link }) => {
   return (
     <DetailsModal>
       {/* Display detailed information about the event */}
       <div className="image-container">
-        {imageUrl ? (
-          <img className="svg-image" src={imageUrl} alt={`Event: ${title}`} />
-        ) : (
-          <svg
-            className="svg-image"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="#666"
-          >
-            <path d="M0 0h24v24H0V0z" fill="none" />
-            <circle cx="12" cy="12" r="8" fill="#ccc" />
-            <path d="M10 3h4v18h-4z" fill="#666" />
-          </svg>
-        )}
+        {/* Replace the SVG with your actual image or media */}
+        <svg
+          className="svg-image"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+        >
+          <path d="M0 0h24v24H0V0z" fill="none" />
+          <circle cx="12" cy="12" r="8" fill="#ccc" />
+          <path d="M10 3h4v18h-4z" fill="#666" />
+        </svg>
       </div>
 
       <h2>Title: {title}</h2>
